@@ -13,7 +13,7 @@ import { Button , Input, Notification,  Toast} from '../../../../components/ui';
 const PersonalInformation = () => {
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://snmsangli.com/api/unit/new_unit', values);
+            const response = await axios.post('https://nirankari-backends.onrender.com/unit/new_unit', values);
 
             if (response.status < 400) {
                 console.log(response);

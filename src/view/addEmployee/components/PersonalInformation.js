@@ -1,4 +1,200 @@
 
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import './PersonalInformation.css'; // Import the CSS file
+// import { Button, DatePicker, Input, Notification, Select, Toast } from '../../../components/ui';
+// import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
+
+// const PersonalInformation = () => {
+//     const [pwInputType, setPwInputType] = useState('password')
+//     const [isSubmitting, setIsSubmitting] = useState(false);
+
+//     const [branchOptions, setBranchOptions] = useState([]);
+//     const [formData, setFormData] = useState({
+//         sanchalak_name: '',
+//         sanchalak_mob: '',
+//         sanchalak_email: '',
+//         sanchalak_password: '',
+//         sanchalak_gender: '',
+//         sanchalak_doj: '',
+//         sanchalak_address: '',
+//         sanchalak_photo: null,
+//         sanchalak_otherDocuments: null,
+//         sanchalak_dob: '',
+//         sanchalak_branchId: '',
+//         sanchalak_occupation: "", sanchalak_education: "", sanchalak_booldG: "", sanchalak_marritialStatus: "", sanchalak_personalNo: "",
+//     });
+
+//     const onPasswordVisibleClick = (e) => {
+//         e.preventDefault()
+//         setPwInputType(pwInputType === 'password' ? 'text' : 'password')
+//     }
+
+//     const handleChange = (e) => {
+//         const { name, value, type } = e.target;
+//         if (type === 'file') {
+//             if (e.target.files.length > 0) {
+//                 // Convert the selected file to base64
+//                 const file = e.target.files[0];
+//                 convertToBase64(file, (base64) => {
+//                     setFormData({ ...formData, [name]: base64 });
+//                 });
+//             }
+//         } else {
+//             setFormData({ ...formData, [name]: value });
+//         }
+//     };
+
+
+//     const inputIcon = (
+//         <span
+//             className="cursor-pointer"
+//             onClick={(e) => onPasswordVisibleClick(e)}
+//         >
+//             {pwInputType === 'password' ? (
+//                 <HiOutlineEyeOff />
+//             ) : (
+//                 <HiOutlineEye />
+//             )}
+//         </span>
+//     )
+
+//     const genderOption = [
+//         { label: 'Male', value: "male" },
+//         { label: 'Female', value: "female" },
+//     ];
+
+//     const marritialStatusOption = [
+//         { label: 'Married', value: "Married" },
+//         { label: 'Unmarried', value: "Unmarried" },
+//     ]
+
+
+
+
+//     // const handleChange = (e) => {
+//     //     const { name, value, type } = e.target;
+
+//     //     if (type === 'file') {
+//     //         // For file inputs, set the value to the selected file
+
+//     //         setFormData({ ...formData, [name]: e.target.files[0] });
+//     //     } else {
+//     //         // For other inputs, set the value as usual
+//     //         setFormData({ ...formData, [name]: value });
+//     //     }
+
+//     // };
+
+
+//     // const handleChange = (e) => {
+//     //     const { name, value, type } = e.target;
+//     //     if (type === 'file') {
+//     //         if (e.target.files.length > 0) {
+//     //             setFormData({ ...formData, [name]: e.target.files[0] });
+//     //         }
+//     //     } else {
+//     //         setFormData({ ...formData, [name]: value });
+//     //     }
+//     // };
+
+//     const handleBranchChange = (selectedOption) => {
+//         setFormData({ ...formData, sanchalak_branchId: selectedOption.value });
+//     };
+//     const handleGenderChange = (selectedOption) => {
+//         setFormData({ ...formData, sanchalak_gender: selectedOption.value });
+//     };
+//     const handleMarriedChange = (selectedOption) => {
+//         setFormData({ ...formData, sanchalak_marritialStatus: selectedOption.value });
+//     };
+//     const handleDateChange = (date) => {
+//         const formattedDate = date.toLocaleDateString('en-GB')
+//         setFormData({ ...formData, sanchalak_dob: formattedDate });
+//     };
+//     const handleDojChange = (date) => {
+//         const formattedDate = date.toLocaleDateString('en-GB'); // "dd/mm/yyyy" format
+//         setFormData({ ...formData, sanchalak_doj: formattedDate });
+//     };
+
+//     useEffect(() => {
+//         // Fetch the unit data from the API
+//         axios.get('https://nirankari-backends.onrender.com/unit/get_unit')
+//             .then((response) => {
+//                 // Assuming the response data is an array of units with properties 'label' and 'value'
+//                 const branchOptions = response.data.map((unit) => ({
+//                     value: unit.id, // Assuming 'id' is the value
+//                     label: unit.unit_name, // Assuming 'name' is the label
+//                 }));
+//                 setBranchOptions(branchOptions);
+//                 console.log(branchOptions)
+//             })
+//             .catch((error) => {
+//                 console.error('Error fetching unit data:', error);
+//             });
+//     }, []);
+
+
+
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         setIsSubmitting(true);
+
+//         // Create a FormData object to handle file uploads
+//         const form = new FormData();
+
+
+//         // for (const key in formData) {
+//         //     if (formData[key]) {
+//         //         form.append(key, formData[key]);
+//         //     }
+//         // }
+//         for (const key in formData) {
+//             if (key === 'sanchalak_photo' || key === 'sanchalak_otherDocuments') {
+//                 // Append the actual File object for images
+//                 form.append(key, formData[key]);
+//             } else {
+//                 // Append other fields as usual
+//                 form.append(key, formData[key]);
+//             }
+//         }
+
+//         try {
+
+//             const selectedBranch = branchOptions.find((option) => option.value === formData.sanchalak_branchId);
+//             formData.sanchalak_branchId = selectedBranch ? selectedBranch.label : '';
+//             console.log(selectedBranch)
+
+
+//             const response = await axios.post('https://nirankari-backends.onrender.com/sanchalak/new_sanchalak', form, {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data',
+//                 },
+//             });
+
+//             console.log('Response from server:', response);
+//             if (response.status < 400) {
+//                 Toast.push(
+//                     <Notification title="Details Updated" type="success">
+//                         sanchalak created successfully.
+//                     </Notification>
+//                 );
+//             } else {
+//                 Toast.push(
+//                     <Notification title="Update Failed" type="danger">
+//                         Unable to create sanchalak. Please try again later.
+//                     </Notification>
+//                 );
+//             }
+//         } catch (error) {
+//             console.error('Error:', error);
+//         } finally {
+//             setIsSubmitting(false);
+//         }
+//     };
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PersonalInformation.css'; // Import the CSS file
@@ -22,7 +218,7 @@ const PersonalInformation = () => {
         sanchalak_otherDocuments: null,
         sanchalak_dob: '',
         sanchalak_branchId: '',
-        sanchalak_occupation: "", sanchalak_education: "", sanchalak_photo: "", sanchalak_booldG: "", sanchalak_marritialStatus: "", sanchalak_personalNo: "",
+        sanchalak_occupation: "", sanchalak_education: "", sanchalak_booldG: "", sanchalak_marritialStatus: "", sanchalak_personalNo: "",
     });
 
     const onPasswordVisibleClick = (e) => {
@@ -51,44 +247,59 @@ const PersonalInformation = () => {
     const marritialStatusOption = [
         { label: 'Married', value: "Married" },
         { label: 'Unmarried', value: "Unmarried" },
-    ]
-
-
-
+    ];
 
     const handleChange = (e) => {
         const { name, value, type } = e.target;
-
         if (type === 'file') {
-            // For file inputs, set the value to the selected file
-            setFormData({ ...formData, [name]: e.target.files[0] });
+            if (e.target.files.length > 0) {
+                // Convert the selected file to base64
+                const file = e.target.files[0];
+                convertToBase64(file, (base64) => {
+                    setFormData({ ...formData, [name]: base64 });
+                });
+            }
         } else {
-            // For other inputs, set the value as usual
             setFormData({ ...formData, [name]: value });
         }
-
     };
+
     const handleBranchChange = (selectedOption) => {
         setFormData({ ...formData, sanchalak_branchId: selectedOption.value });
     };
+
     const handleGenderChange = (selectedOption) => {
         setFormData({ ...formData, sanchalak_gender: selectedOption.value });
     };
+
     const handleMarriedChange = (selectedOption) => {
         setFormData({ ...formData, sanchalak_marritialStatus: selectedOption.value });
     };
+
     const handleDateChange = (date) => {
         const formattedDate = date.toLocaleDateString('en-GB')
         setFormData({ ...formData, sanchalak_dob: formattedDate });
     };
+
     const handleDojChange = (date) => {
         const formattedDate = date.toLocaleDateString('en-GB'); // "dd/mm/yyyy" format
         setFormData({ ...formData, sanchalak_doj: formattedDate });
     };
 
+    const convertToBase64 = (file, callback) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            callback(reader.result.split(',')[1]);
+        };
+        reader.onerror = (error) => {
+            console.error('Error converting file to base64:', error);
+        };
+    };
+
     useEffect(() => {
         // Fetch the unit data from the API
-        axios.get('http://snmsangli.com/api/unit/get_unit')
+        axios.get('https://nirankari-backends.onrender.com/unit/get_unit')
             .then((response) => {
                 // Assuming the response data is an array of units with properties 'label' and 'value'
                 const branchOptions = response.data.map((unit) => ({
@@ -103,33 +314,18 @@ const PersonalInformation = () => {
             });
     }, []);
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Create a FormData object to handle file uploads
-        const form = new FormData();
-
-
-        for (const key in formData) {
-            form.append(key, formData[key]);
-        }
-
         try {
-
-            const selectedBranch = branchOptions.find((option) => option.value === formData.sanchalak_branchId);
-            formData.sanchalak_branchId = selectedBranch ? selectedBranch.label : '';
-            console.log(selectedBranch)
-
-
-            const response = await axios.post('http://snmsangli.com/api/sanchalak/new_sanchalak', form, {
+            const response = await axios.post('http://localhost:9000/sanchalak/new_sanchalak', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data', // Set content type for file uploads
+                    'Content-Type': 'application/json',
                 },
             });
 
+            console.log('Response from server:', response);
             if (response.status < 400) {
                 Toast.push(
                     <Notification title="Details Updated" type="success">
@@ -149,6 +345,7 @@ const PersonalInformation = () => {
             setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="form-container">
@@ -249,13 +446,22 @@ const PersonalInformation = () => {
 
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="sanchalak_photo">Upload Photo</label>
                     <Input
                         type="file"
                         name="sanchalak_photo"
                         onChange={handleChange}
                         multiple={true} // Allow multiple file selection
+                    />
+                </div> */}
+                  <div className="form-group">
+                    <label htmlFor="sanchalak_photo">Upload Photo</label>
+                    <Input
+                        type="file"
+                        name="sanchalak_photo"
+                        onChange={handleChange}
+                        multiple={false} // Allow only single file selection
                     />
                 </div>
                 <div className="form-group">
@@ -264,7 +470,7 @@ const PersonalInformation = () => {
                         type="file"
                         name="sanchalak_otherDocuments"
                         onChange={handleChange}
-                        multiple={true} // Allow multiple file selection
+                        multiple={false} // Allow multiple file selection
                     />
                 </div>
 

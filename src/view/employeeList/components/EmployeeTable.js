@@ -94,14 +94,14 @@ const EmployeeTable = () => {
                     return (
                         <div className="flex items-center">
                             {row.sanchalak_photo ? (
+ 
                                 <img
-                                    src={`http://snmsangli.com/api/uploads/${encodeURIComponent(row.sanchalak_photo)}`}
-
-                                    alt="Sanchalak Photo"
+                                    className="h-auto w-28 mx-auto"
                                     width="50"
-                                    height="50"
-                                    style={{ maxWidth: '100%', maxHeight: '100%', }}
-                                    onError={() => console.log("Image load error:", row.sanchalak_photo)}
+                                    // height="50"
+                                    style={{ maxWidth: '50%', maxHeight: '50%', }}
+                                    src={`data:image/png;base64,${row.sanchalak_photo}`}
+                                    alt=""
                                 />
                             ) : (
                                 'No Photo'

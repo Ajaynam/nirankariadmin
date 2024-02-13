@@ -10,14 +10,14 @@ const CategoryChart = () => {
   const [chartData, setChartData] = useState({ data: [], labels: [], percentages: [] });
 
   useEffect(() => {
-    axios.get('http://snmsangli.com/api/sevadal/sevadal-chart')
+    axios.get('https://nirankari-backends.onrender.com/sevadal/sevadal-chart')
       .then((response) => {
         const data = response.data;
         console.log(data)
         if (!isEmpty(data)) {
 
           // Fetch unit data to get branch names
-          axios.get('http://snmsangli.com/api/unit/get_unit')
+          axios.get('https://nirankari-backends.onrender.com/unit/get_unit')
             .then((unitResponse) => {
               const unitData = unitResponse.data;
               console.log(unitData)

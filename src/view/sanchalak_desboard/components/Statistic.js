@@ -521,32 +521,32 @@ const Statistic = () => {
   useEffect(() => {
     axios
       .all([
-        axios.get('http://snmsangli.com/api/get_sanchalakCard_count'),
-        axios.get('http://snmsangli.com/api/get_sahayojakCard_count'),
-        axios.get('http://snmsangli.com/api/get_inchargeCard_count'),
-        axios.get('http://snmsangli.com/api/get_upcoming_events'),
+        axios.get('https://nirankari-backends.onrender.com/sanchalak/get_sanchalakCard_count'),
+        // axios.get('https://nirankari-backends.onrender.com/get_sahayojakCard_count'),
+        // axios.get('https://nirankari-backends.onrender.com/get_inchargeCard_count'),
+        // axios.get('https://nirankari-backends.onrender.com/get_upcoming_events'),
       ])
       .then(
         axios.spread(
           (
             sanchalakResponse,
-            sahayojakResponse,
-            inchargeResponse,
-            upcomingEventsResponse
+            // sahayojakResponse,
+            // inchargeResponse,
+            // upcomingEventsResponse
           ) => {
             const sanchalakCount = sanchalakResponse.data.count;
-            const sahayojakCount = sahayojakResponse.data.count;
-            const inchargeCount = inchargeResponse.data.count;
-            const upcomingEventsData = upcomingEventsResponse.data;
+            // const sahayojakCount = sahayojakResponse.data.count;
+            // const inchargeCount = inchargeResponse.data.count;
+            // const upcomingEventsData = upcomingEventsResponse.data;
 
             const newData = {
               sanchalak: { value: sanchalakCount },
-              sahayojak: { value: sahayojakCount },
-              incharge: { value: inchargeCount },
-              event: { value: upcomingEventsData.length }, // Count of upcoming events
-              nextEvent: upcomingEventsData[0] || null, // Next upcoming event
+              // sahayojak: { value: sahayojakCount },
+              // incharge: { value: inchargeCount },
+              // event: { value: upcomingEventsData.length }, // Count of upcoming events
+              // nextEvent: upcomingEventsData[0] || null, // Next upcoming event
             };
-            console.log(upcomingEventsData)
+            console.log("sanchalakCount",sanchalakCount)
 
             setStatisticsData(newData);
 

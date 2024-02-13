@@ -1,7 +1,8 @@
 const appConfig = {
     // apiPrefix: 'http://localhost:4000/api/',
-    // apiPrefix: 'http://snmsangli.com/api/',
-    apiPrefix: 'http://localhost:7000',
+    // apiPrefix: 'https://nirankari-backends.onrender.com/',  
+
+    apiPrefix: 'http://localhost:9000',
     authenticatedEntryPath: '/dashboard',
     unAuthenticatedEntryPath: '/sign-in',
     tourPath: '/',

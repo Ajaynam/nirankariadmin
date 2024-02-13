@@ -17,7 +17,7 @@ const DashboardBody = () => {
 
   useEffect(() => {
     // Make an API request to fetch the chart data
-    axios.get('http://snmsangli.com/api/chet_sanch/sanchalak-chart') // Replace with your API endpoint
+    axios.get('https://nirankari-backends.onrender.com/chet_sanch/sanchalak-chart') // Replace with your API endpoint
       .then((response) => {
         // Process the data from the response
         const chartData = {

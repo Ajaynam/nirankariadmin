@@ -15,7 +15,7 @@ const EditUnit = ({initialData }) => {
         try {
             const id = initialData?.id; // Use optional chaining
             if(id){
-                const response = await axios.put(`http://snmsangli.com/api/unit/update_unit/${initialData.id}`, values);
+                const response = await axios.put(`https://nirankari-backends.onrender.com/unit/update_unit/${initialData.id}`, values);
                 if (response.status < 400) {
                     console.log(response);
                     Toast.push(

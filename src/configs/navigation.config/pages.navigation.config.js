@@ -31,7 +31,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.unit',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [CHETRIYE_SANCHALAK ],
+                authority: [CHETRIYE_SANCHALAK ,SANCHALAK],
                 subMenu: [],
             },
             {
@@ -41,7 +41,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.che_sach.list',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN ,CHETRIYE_SANCHALAK],
+                authority: [ADMIN ,SANCHALAK ,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
        
@@ -53,7 +53,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.sayayojak',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN ,CHETRIYE_SANCHALAK],
+                authority: [ADMIN ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
             {
@@ -63,7 +63,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.ichARGE',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN ,CHETRIYE_SANCHALAK],
+                authority: [ADMIN ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
             {
@@ -73,7 +73,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.sevadalGents',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [SANCHALAK ,CHETRIYE_SANCHALAK],
+                authority: [SANCHALAK ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
             
@@ -84,7 +84,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.sevadalLadies',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [SANCHALAK ,CHETRIYE_SANCHALAK],
+                authority: [SANCHALAK ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
             {
@@ -94,7 +94,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.events',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [SANCHALAK ,CHETRIYE_SANCHALAK],
+                authority: [SANCHALAK ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
             {
@@ -104,7 +104,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.attendance',
                 icon: 'list',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [SANCHALAK ,CHETRIYE_SANCHALAK],
+                authority: [SANCHALAK, SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
           
@@ -116,7 +116,7 @@ const pagesNavigationConfig = [
                 translateKey: 'nav.media',
                 icon: 'user',
                 type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN ,CHETRIYE_SANCHALAK],
+                authority: [ADMIN ,SANCHALAK,CHETRIYE_SANCHALAK],
                 subMenu: [],
             },
         
